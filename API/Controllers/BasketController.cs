@@ -38,9 +38,8 @@ namespace API.Controllers
             basket.AddItem(product, quantity);
 
             var result = await _context.SaveChangesAsync() > 0;
-            if (result) return StatusCode(201);
             
-            return StatusCode(201);
+            if (result) return StatusCode(201);
 
             return BadRequest(new ProblemDetails { Title= "Problem saving item to basket"});
         }
