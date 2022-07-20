@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
-import { createTheme, CssBaseline } from "@mui/material";
-import { Container } from "@mui/system";
+import { Container, createTheme, CssBaseline } from "@mui/material";
+
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -13,6 +13,7 @@ import Header from "./Header";
 import 'react-toastify/dist/ReactToastify.css';
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
+import BasketPage from "../../features/basket/BasketPage";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -43,6 +44,7 @@ function handleThemeChange(){
         <Route path='/about' component={AboutPage} />
         <Route path='/contact' component={ContactPage} />
         <Route path='/server-error' component={ServerError} />
+        <Route path='/basket' component={BasketPage} />
         <Route component={NotFound} />
         </Switch>
      </Container>
