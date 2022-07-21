@@ -1,9 +1,10 @@
 import { Add, Delete, Remove } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { useStoreContext } from "../../app/context/StoreContext";
+import BasketSummary from "./BasketSummary";
 
 export default function BasketPage() {
   const { basket, setBasket, removeItem } = useStoreContext();
@@ -30,6 +31,7 @@ export default function BasketPage() {
   if (!basket) return <Typography variant='h3'>Your basket is empty</Typography>
 
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
         <TableHead>
@@ -82,5 +84,12 @@ export default function BasketPage() {
         </TableBody>
       </Table>
     </TableContainer>
+    <Grid container>
+      <Grid item xs={6} />
+      <Grid item xs={6}>
+        <BasketSummary />
+      </Grid>
+    </Grid>
+    </>
   )
 }
