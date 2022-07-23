@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 
 const store = configureStore();
 
-console.log(store.getState());
 
 export const history = createBrowserHistory();
 
