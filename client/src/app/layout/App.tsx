@@ -21,9 +21,11 @@ import { useAppDispatch } from "../store/configureStore";
 import { setBasket } from "../../features/basket/basketSlice";
 import Register from "../../features/account/Register";
 import Login from "../../features/account/Login";
+import { fetchCurrentUser } from "../../features/account/accountSlice";
 
 function App() {
   const dispatch = useAppDispatch();
+  dispatch(fetchCurrentUser());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
