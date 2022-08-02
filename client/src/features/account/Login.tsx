@@ -22,8 +22,12 @@ export default function Login() {
       mode: 'all'
     });
     async function submitForm(data: FieldValues){
+       try {
         await dispatch(signInUser(data));
         history.push('/catalog');
+       } catch (error) {
+         console.log(error);
+       }
     }
 
   return (
