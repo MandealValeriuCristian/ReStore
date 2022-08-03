@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.DTOs;
+using API.Entities;
 using API.Entities.OrderAggregate;
 using API.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -73,7 +74,7 @@ namespace API.Controllers
             {
                 OrderItems = items,
                 BuyerId = User.Identity.Name,
-                ShippingAdress = orderDto.ShippingAdress,
+                ShippingAddress = orderDto.ShippingAddress,
                 Subtotal = subtotal,
                 DeliveryFee = deliveryFee
             };
@@ -83,18 +84,21 @@ namespace API.Controllers
 
             if(orderDto.SaveAddress)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(x=>x.UserName == User.Identity.Name);
-                user.Adress = new Entities.UserAdress
+                var user = await _context.Users
+                    .Include(a => a.Address)
+                    .FirstOrDefaultAsync(x=>x.UserName == User.Identity.Name);
+                var address = new UserAddress
                 {
-                    FullName = orderDto.ShippingAdress.FullName,
-                    Adress1 = orderDto.ShippingAdress.Adress1,
-                    Adress2 = orderDto.ShippingAdress.Adress2,
-                    City = orderDto.ShippingAdress.City,
-                    State = orderDto.ShippingAdress.State,
-                    Zip = orderDto.ShippingAdress.Zip,
-                    Country = orderDto.ShippingAdress.Country,
+                    FullName = orderDto.ShippingAddress.FullName,
+                    Address1 = orderDto.ShippingAddress.Address1,
+                    Address2 = orderDto.ShippingAddress.Address2,
+                    City = orderDto.ShippingAddress.City,
+                    State = orderDto.ShippingAddress.State,
+                    Zip = orderDto.ShippingAddress.Zip,
+                    Country = orderDto.ShippingAddress.Country,
                 };
-                _context.Update(user);
+                user.Address = address;
+                //_context.Update(user);
             }
 
             var result = await _context.SaveChangesAsync() > 0;
