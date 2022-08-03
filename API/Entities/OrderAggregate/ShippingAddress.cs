@@ -3,7 +3,7 @@
 namespace API.Entities.OrderAggregate
 {
     [Owned]
-    public class ShippingAdress : Adress
+    public class ShippingAddress : Address
     {
     }
 }

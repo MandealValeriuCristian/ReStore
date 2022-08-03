@@ -24,9 +24,9 @@ namespace API.Data
             base.OnModelCreating(builder);
 
             builder.Entity<User>()
-                .HasOne(a => a.Adress)
+                .HasOne(a => a.Address)
                 .WithOne()
-                .HasForeignKey<UserAdress>(a => a.Id)
+                .HasForeignKey<UserAddress>(a => a.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Role>()

@@ -165,14 +165,14 @@ namespace API.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2868d678-d146-497b-a447-19bc377475aa",
+                            ConcurrencyStamp = "8f65d61d-a7f0-4ae4-9987-7a403ed06fff",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "92d59d1d-7e29-4cba-a54f-06e8be9a9f7a",
+                            ConcurrencyStamp = "5625c2fc-e30a-4daf-9812-0a4ddaebe145",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -243,15 +243,15 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("API.Entities.UserAdress", b =>
+            modelBuilder.Entity("API.Entities.UserAddress", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Adress1")
+                    b.Property<string>("Address1")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Adress2")
+                    b.Property<string>("Address2")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
@@ -271,7 +271,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAdress");
+                    b.ToTable("UserAddress");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -394,15 +394,15 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.OrderAggregate.Order", b =>
                 {
-                    b.OwnsOne("API.Entities.OrderAggregate.ShippingAdress", "ShippingAdress", b1 =>
+                    b.OwnsOne("API.Entities.OrderAggregate.ShippingAddress", "ShippingAddress", b1 =>
                         {
                             b1.Property<int>("OrderId")
                                 .HasColumnType("INTEGER");
 
-                            b1.Property<string>("Adress1")
+                            b1.Property<string>("Address1")
                                 .HasColumnType("TEXT");
 
-                            b1.Property<string>("Adress2")
+                            b1.Property<string>("Address2")
                                 .HasColumnType("TEXT");
 
                             b1.Property<string>("City")
@@ -428,7 +428,7 @@ namespace API.Data.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.Navigation("ShippingAdress");
+                    b.Navigation("ShippingAddress");
                 });
 
             modelBuilder.Entity("API.Entities.OrderAggregate.OrderItem", b =>
@@ -462,11 +462,11 @@ namespace API.Data.Migrations
                     b.Navigation("ItemOrdered");
                 });
 
-            modelBuilder.Entity("API.Entities.UserAdress", b =>
+            modelBuilder.Entity("API.Entities.UserAddress", b =>
                 {
                     b.HasOne("API.Entities.User", null)
-                        .WithOne("Adress")
-                        .HasForeignKey("API.Entities.UserAdress", "Id")
+                        .WithOne("Address")
+                        .HasForeignKey("API.Entities.UserAddress", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -534,7 +534,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.User", b =>
                 {
-                    b.Navigation("Adress");
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

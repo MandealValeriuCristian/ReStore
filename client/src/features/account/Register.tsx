@@ -66,12 +66,12 @@ export default function Register() {
                     <TextField
                         margin="normal"
                         fullWidth
-                        label="Email adress"
+                        label="Email address"
                         {...register('email', { 
                             required: 'Email is required',
                             pattern: {
                                 value: /^\w+[\w-.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/,
-                                message: 'Not a valid email adress'
+                                message: 'Not a valid email address'
                             }
                         })}
                         error={!!errors.email}

@@ -70,13 +70,13 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     BuyerId = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_FullName = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_Adress1 = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_Adress2 = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_City = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_State = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_Zip = table.Column<string>(type: "TEXT", nullable: true),
-                    ShippingAdress_Country = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_Address1 = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_Address2 = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_City = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_State = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_Zip = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress_Country = table.Column<string>(type: "TEXT", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Subtotal = table.Column<long>(type: "INTEGER", nullable: false),
                     DeliveryFee = table.Column<long>(type: "INTEGER", nullable: false),
@@ -213,13 +213,13 @@ namespace API.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAdress",
+                name: "UserAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false),
                     FullName = table.Column<string>(type: "TEXT", nullable: true),
-                    Adress1 = table.Column<string>(type: "TEXT", nullable: true),
-                    Adress2 = table.Column<string>(type: "TEXT", nullable: true),
+                    Address1 = table.Column<string>(type: "TEXT", nullable: true),
+                    Address2 = table.Column<string>(type: "TEXT", nullable: true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
                     State = table.Column<string>(type: "TEXT", nullable: true),
                     Zip = table.Column<string>(type: "TEXT", nullable: true),
@@ -227,9 +227,9 @@ namespace API.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAdress", x => x.Id);
+                    table.PrimaryKey("PK_UserAddress", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserAdress_AspNetUsers_Id",
+                        name: "FK_UserAddress_AspNetUsers_Id",
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -289,12 +289,12 @@ namespace API.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "2868d678-d146-497b-a447-19bc377475aa", "Member", "MEMBER" });
+                values: new object[] { 1, "8f65d61d-a7f0-4ae4-9987-7a403ed06fff", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "92d59d1d-7e29-4cba-a54f-06e8be9a9f7a", "Admin", "ADMIN" });
+                values: new object[] { 2, "5625c2fc-e30a-4daf-9812-0a4ddaebe145", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -373,7 +373,7 @@ namespace API.Data.Migrations
                 name: "OrderItem");
 
             migrationBuilder.DropTable(
-                name: "UserAdress");
+                name: "UserAddress");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
