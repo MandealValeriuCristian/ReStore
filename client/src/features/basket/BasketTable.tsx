@@ -8,7 +8,7 @@ interface Props {
     items: BasketItem[];
     isBasket?: boolean;
 }
-export default function BasketTable({items, isBasket}: Props) {
+export default function BasketTable({items, isBasket = true}: Props) {
     const { status } = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
     return (
