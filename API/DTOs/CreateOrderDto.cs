@@ -4,7 +4,7 @@ namespace API.DTOs
 {
     public class CreateOrderDto
     {
-        public bool SaveAdress { get; set; }
+        public bool SaveAddress { get; set; }
         public ShippingAdress ShippingAdress { get; set; }
     }
 }

@@ -81,7 +81,7 @@ namespace API.Controllers
             _context.Orders.Add(order);
             _context.Baskets.Remove(basket);
 
-            if(orderDto.SaveAdress)
+            if(orderDto.SaveAddress)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x=>x.UserName == User.Identity.Name);
                 user.Adress = new Entities.UserAdress
