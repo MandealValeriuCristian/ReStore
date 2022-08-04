@@ -6,23 +6,15 @@ import AppTextInput from '../../app/components/AppTextInput';
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from '@stripe/react-stripe-js';
 import { StripeInput } from '../about/StripeInput';
 import { StripeElementType } from '@stripe/stripe-js';
-import { useState } from 'react';
 
-export default function PaymentForm() {
+interface Props {
+  cardState: { elementError: { [key in StripeElementType]?: string } };
+  onCardInputChange: (event: any) => void;
+}
+
+export default function PaymentForm({cardState, onCardInputChange}: Props) {
   const { control } = useFormContext();
-  const [cardState, setCardState] = useState<{ elementError: { [key in StripeElementType]?: string } }>({ elementError: {} });
-  const [cardComplete, setCardComplete] = useState<any>({ cardNumber: false, cardExpiry: false, cardCvc: false });
-
-  function onCardInputChange(event: any) {
-    setCardState({
-      ...cardState,
-      elementError: {
-        ...cardState.elementError,
-        [event.elementType]: event.error?.message
-      }
-    })
-    setCardComplete({ ...cardComplete, [event.elementType]: event.complete });
-  }
+  
 
   return (
     <>
