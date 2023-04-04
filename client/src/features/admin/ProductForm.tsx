@@ -1,6 +1,7 @@
 import { Typography, Grid, Paper, Box, Button } from "@mui/material";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import AppDropZone from "../../app/components/AppDropZone";
 import AppSelectList from "../../app/components/AppSelectList";
 import AppTextInput from "../../app/components/AppTextInput";
 import useProducts from "../../app/hooks/useProducts";
@@ -11,19 +12,23 @@ interface Props {
 }
 
 export default function ProductForm({product, cancelEdit}: Props) {
-    const { control, reset } = useForm();
+    const { control, reset, handleSubmit } = useForm();
     const {brands, types} = useProducts();
 
     useEffect(() => {
         if (product) reset(product);
     }, [product, reset]);
 
+    function handleSubmitData(data: FieldValues){
+        console.log(data);
+    }
 
     return (
         <Box component={Paper} sx={{p: 4}}>
             <Typography variant="h4" gutterBottom sx={{mb: 4}}>
                 Product Details
             </Typography>
+            <form onSubmit={handleSubmit(handleSubmitData)}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={12}>
                     <AppTextInput control={control} name='name' label='Product name' />
@@ -44,13 +49,14 @@ export default function ProductForm({product, cancelEdit}: Props) {
                     <AppTextInput multiline={true} rows={4} control={control} name='description' label='Description' />
                 </Grid>
                 <Grid item xs={12}>
-                    <AppTextInput control={control} name='pictureUrl' label='Image' />
+                    <AppDropZone control={control} name='file'/>
                 </Grid>
             </Grid>
             <Box display='flex' justifyContent='space-between' sx={{mt: 3}}>
                 <Button onClick={cancelEdit} variant='contained' color='inherit'>Cancel</Button>
-                <Button variant='contained' color='success'>Submit</Button>
+                <Button type='submit' variant='contained' color='success'>Submit</Button>
             </Box>
+            </form>
         </Box>
     )
 }
