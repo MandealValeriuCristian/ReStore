@@ -96,7 +96,7 @@ namespace API.Controllers
 
             _mapper.Map(productDto, product);
 
-            if(productDto != null)
+            if(productDto.File != null)
             {
                 var imageResult = await _imageService.AddImageAsync(productDto.File);
 
