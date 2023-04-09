@@ -37,7 +37,6 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
 
                 <Box display='flex' alignItems='center'>
                     <Typography variant='h6' component={NavLink} to='/'
-                        exact
                         sx={navStyles}>
                         RE-STORE
                     </Typography>
@@ -55,7 +54,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
                             {title.toUpperCase()}
                         </ListItem>
                     ))}
-                    {user && <ListItem
+                    {user && user.roles?.includes('Admin') && <ListItem
                             component={NavLink}
                             to={'/inventory'}
                             sx={navStyles}
