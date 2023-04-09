@@ -117,7 +117,7 @@ namespace API.Controllers
             return BadRequest(new ProblemDetails { Title = "Problem updating product" });
         }
         [Authorize(Roles = "Admin")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
 
         public async Task<ActionResult> DeleteProduct(int id)
         {
