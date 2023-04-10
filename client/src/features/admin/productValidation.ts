@@ -9,6 +9,6 @@ export const validationSchema = yup.object({
     description: yup.string().required('Description is a required field'),
     file: yup.mixed().when('pictureUrl', {
         is: (value: string) => !value,
-        then: yup.mixed().required('Please provide an image')
+        then: schema => schema.required('Please provide an image')
     })
 })
